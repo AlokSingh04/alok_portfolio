@@ -1,51 +1,47 @@
 {
     "profile": {
-        "name": "rushhiii",
-        "tagline": "Full Stack Developer & AI/ML Enthusiast",
-        "location": "Canada",
+        "name": "Alok",
+        "tagline": "Full Stack Developer & Data Science Enthusiast",
+        "location": "India",
         "bannerImage": "../ele/card_banner.png",
-        "profileImage": "../ele/profile_pic.png",
-        "themeColor": "#8b5cf6"
+        "profileImage": "../ele/alok_profile.jpg",
+        "themeColor": "#f97316"
     },
     "skills": [
         "Full Stack Developer",
-        "Tech Explorer"
+        "Data Science",
+        "Team Leader",
+        "Freelancer"
     ],
     "socialLinks": [
         {
-            "platform": "Discord",
-            "url": "https://discord.com/users/757054095985999923",
-            "icon": "discord",
-            "tooltip": "Discord"
-        },
-        {
             "platform": "LinkedIn",
-            "url": "https://www.linkedin.com/in/rushhiii",
+            "url": "https://www.linkedin.com/in/alok-singh-8560b9295/",
             "icon": "linkedin",
             "tooltip": "LinkedIn"
         },
         {
             "platform": "GitHub",
-            "url": "https://github.com/rushhiii",
+            "url": "https://github.com/AlokSingh04",
             "icon": "github",
             "tooltip": "GitHub"
         },
         {
             "platform": "Email",
-            "url": "mailto:rushiofficial1205@gmail.com",
+            "url": "mailto:alokvinodsingh02@gmail.com",
             "icon": "email",
             "tooltip": "Email"
         },
         {
-            "platform": "linktree",
-            "url": "https://linktr.ee/its.rushi",
-            "icon": "linktree",
-            "tooltip": "Linktree"
+            "platform": "WhatsApp",
+            "url": "https://wa.me/8264107435",
+            "icon": "whatsapp",
+            "tooltip": "WhatsApp"
         }
     ],
     "footer": {
-        "text": "Made by Rushi",
-        "url": "https://github.com/rushhiii",
+        "text": "Made by Alok",
+        "url": "https://github.com/AlokSingh04",
         "showHeart": true
     },
     "animations": {
@@ -58,6 +54,6 @@
         "cardBorderRadius": "24px",
         "glowIntensity": "20px",
         "backgroundType": "solid",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#ffffff"
     }
 }

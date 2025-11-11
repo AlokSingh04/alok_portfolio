@@ -5,7 +5,7 @@ class PortfolioApp {
         this.categories = [];
         this.currentFilter = 'all';
         this.isMenuOpen = false;
-        this.isDarkTheme = true;
+        this.isDarkTheme = true; // Default to dark theme (orange and black)
         this.loadingProgress = 0;
 
         this.initLoading();
@@ -216,8 +216,8 @@ class PortfolioApp {
         if (savedTheme) {
             this.isDarkTheme = savedTheme === 'dark';
         } else {
-            // Check system preference
-            this.isDarkTheme = !window.matchMedia('(prefers-color-scheme: light)').matches;
+            // Default to dark mode
+            this.isDarkTheme = true;
         }
 
         this.applyTheme();
@@ -233,16 +233,13 @@ class PortfolioApp {
         const profileImage = document.querySelector('.profile-image');
         
         if (this.isDarkTheme) {
-            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', 'dark');
             if (themeToggle) {
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
             // Set dark theme profile picture with smooth transition
             if (profileImage) {
-                this.switchProfileImage(profileImage, './assets/ele/profile_pic.png', 'Tirth Patel - Developer Illustration (Dark Theme)', 'brightness(0.7) contrast(1.1) hue-rotate(0) saturate(1)');
-                // this.switchProfileImage(profileImage, './assets/ele/profile1.jpg', 'Tirth Patel - Developer Illustration (Dark Theme)', 'brightness(0.7) contrast(1.1) hue-rotate(0) saturate(1)');
-                // this.switchProfileImage(profileImage, './assets/ele/profile_pic.jpg', 'Tirth Patel - Developer Illustration (Dark Theme)', 'none');
-
+                this.switchProfileImage(profileImage, './assets/ele/alok_profile.jpg', 'Alok - Profile (Dark Theme)', 'none');
             }
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
@@ -251,8 +248,7 @@ class PortfolioApp {
             }
             // Set light theme profile picture with smooth transition
             if (profileImage) {
-                // this.switchProfileImage(profileImage, './assets/ele/profile_graba1.jpg', 'Tirth Patel - Developer Illustration (Light Theme)', 'none');
-                this.switchProfileImage(profileImage, './assets/ele/profile2.jpg', 'Tirth Patel - Developer Illustration (Light Theme)', 'none');
+                this.switchProfileImage(profileImage, './assets/ele/alok_profile.jpg', 'Alok - Profile (Light Theme)', 'none');
             }
         }
         
@@ -824,7 +820,7 @@ class PortfolioApp {
                     description: "A responsive personal website showcasing projects with modern design patterns and animations.",
                     technologies: ["HTML5", "CSS3", "JavaScript", "Modern Design"],
                     category: "web",
-                    githubUrl: "https://github.com/rushhiii/portfolio",
+                    githubUrl: "https://github.com/AlokSingh04/portfolio",
                     liveUrl: "#",
                     featured: true
                 },
@@ -834,7 +830,7 @@ class PortfolioApp {
                     description: "Full-stack web application for task management with real-time updates and user authentication.",
                     technologies: ["React", "Node.js", "MongoDB", "Express"],
                     category: "web",
-                    githubUrl: "https://github.com/rushhiii/task-manager",
+                    githubUrl: "https://github.com/AlokSingh04/task-manager",
                     liveUrl: "#",
                     featured: true
                 },
@@ -844,7 +840,7 @@ class PortfolioApp {
                     description: "Intelligent chatbot using natural language processing for automated customer support.",
                     technologies: ["Python", "Machine Learning", "NLP", "TensorFlow"],
                     category: "ai",
-                    githubUrl: "https://github.com/rushhiii/ai-chatbot",
+                    githubUrl: "https://github.com/AlokSingh04/ai-chatbot",
                     liveUrl: "#",
                     featured: true
                 }
@@ -1044,37 +1040,61 @@ class PortfolioApp {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
-        // Prepare form data for Netlify
+        // Prepare data for Formspree
         const formData = new FormData(e.target);
-        const data = new URLSearchParams();
 
-        // Add form-name for Netlify
-        data.append('form-name', 'portfolio-contact');
+        // Basic client-side validation (helps avoid Formspree 400s)
+        const emailValue = (formData.get('email') || '').toString().trim();
+        const nameValue = (formData.get('name') || '').toString().trim();
+        const subjectValue = (formData.get('subject') || '').toString().trim();
+        const messageValue = (formData.get('message') || '').toString().trim();
 
-        // Add all form fields
-        for (const [key, value] of formData.entries()) {
-            data.append(key, value);
+        // Simple but effective email pattern (RFC-lite)
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!emailPattern.test(emailValue)) {
+            this.showNotification('Please enter a valid email address.', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
+        }
+        if (!nameValue || !subjectValue || !messageValue) {
+            this.showNotification('Please fill out all fields before sending.', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
         }
 
-        // Submit to Netlify
-        fetch('/', {
+        // Submit to Formspree
+        fetch('https://formspree.io/f/manayweg', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
             },
-            body: data.toString()
+            body: formData
         })
-            .then(response => {
+            .then(async (response) => {
                 if (response.ok) {
                     this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
                     e.target.reset();
+                    // Redirect to thank-you page after a short delay
+                    setTimeout(() => {
+                        window.location.href = './thank-you.html';
+                    }, 1500);
                 } else {
-                    throw new Error('Network response was not ok');
+                    // Try to read detailed errors from Formspree
+                    let errorMessage = 'Failed to send message.';
+                    try {
+                        const data = await response.json();
+                        if (data && Array.isArray(data.errors) && data.errors.length) {
+                            errorMessage = data.errors.map(err => err.message).join(', ');
+                        }
+                    } catch (_) {}
+                    throw new Error(errorMessage);
                 }
             })
             .catch((error) => {
                 console.error('Form submission failed:', error);
-                this.showNotification('❌ Failed to send message. Please try emailing me directly at rushiofficial1205@gmail.com', 'error');
+                this.showNotification(`❌ ${error.message} If the issue persists, please email me directly at alokvinodsingh02@gmail.com`, 'error');
             })
             .finally(() => {
                 // Restore button state
@@ -1322,8 +1342,8 @@ const notificationStyles = `
             45deg,
             transparent,
             transparent 8px,
-            rgba(99, 102, 241, 0.1) 8px,
-            rgba(99, 102, 241, 0.1) 16px
+            rgba(249, 115, 22, 0.1) 8px,
+            rgba(249, 115, 22, 0.1) 16px
         );
         backdrop-filter: blur(25px);
         border: 2px solid transparent;
@@ -1400,17 +1420,17 @@ const notificationStyles = `
     }
 
     .notification.info {
-        border-color: rgba(99, 102, 241, 0.5);
+        border-color: rgba(249, 115, 22, 0.5);
         background-image: repeating-linear-gradient(
             45deg,
             transparent,
             transparent 8px,
-            rgba(99, 102, 241, 0.15) 8px,
-            rgba(99, 102, 241, 0.15) 16px
+            rgba(249, 115, 22, 0.15) 8px,
+            rgba(249, 115, 22, 0.15) 16px
         );
         box-shadow: 
-            0 20px 40px rgba(99, 102, 241, 0.2),
-            0 8px 16px rgba(99, 102, 241, 0.1),
+            0 20px 40px rgba(249, 115, 22, 0.2),
+            0 8px 16px rgba(249, 115, 22, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     
@@ -1441,8 +1461,8 @@ const notificationStyles = `
     }
 
     .notification.info i {
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.2);
+        color: #f97316;
+        background: rgba(249, 115, 22, 0.2);
         animation: infoPulse 0.6s ease-out;
     }
 
@@ -1526,7 +1546,7 @@ class EnhancedFeatures {
             position: fixed;
             width: 20px;
             height: 20px;
-            background: var(--primary);
+            background: #f97316;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;

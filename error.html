@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Failed - Alok's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .message-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: var(--danger);
+            margin-bottom: var(--space-lg);
+        }
+        
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+            margin-top: var(--space-sm);
+            justify-content: center;
+        }
+        
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+        }
+        
+        .email-button {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-button:hover {
+            background: #128C7E;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .email-button:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: var(--space-lg);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--primary-light);
+        }
+        
+        @media (max-width: 768px) {
+            .message-container {
+                padding: var(--space-xl);
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <h1>Message Failed!</h1>
+        <p>Sorry, there was an issue sending your message through the form. This might be due to a temporary network problem or server issue.</p>
+        <p>For immediate assistance, please contact me directly using one of the following options:</p>
+        
+        <div class="contact-options">
+            <a href="mailto:alokvinodsingh02@gmail.com" class="contact-button email-button">
+                <i class="fas fa-envelope"></i>
+                <span>Send Email Directly</span>
+            </a>
+            
+            <a href="https://wa.me/8264107435" target="_blank" class="contact-button whatsapp-button">
+                <i class="fab fa-whatsapp"></i>
+                <span>Message Me on WhatsApp</span>
+            </a>
+        </div>
+        
+        <a href="./index.html#contact" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Contact Form
+        </a>
+    </div>
+</body>
+</html>

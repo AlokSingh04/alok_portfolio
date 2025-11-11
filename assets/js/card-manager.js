@@ -203,7 +203,7 @@ class NexusCardManager {
                 location: "Your Location",
                 bannerImage: "./assets/ele/repo_banner.png",
                 profileImage: "./assets/ele/profile_pic.png",
-                themeColor: "#306dcb"
+                themeColor: "#f97316"
             },
             skills: ["Skill 1", "Skill 2"],
             socialLinks: [
@@ -336,14 +336,14 @@ class NexusCardManager {
      */
     getAvailableThemes() {
         return {
-            'blue': { color: '#306dcb', name: 'Ocean Blue' },
-            'purple': { color: '#8b5cf6', name: 'Royal Purple' },
+            'blue': { color: '#f97316', name: 'Orange' },
+            'purple': { color: '#f97316', name: 'Orange' },
             'green': { color: '#10b981', name: 'Emerald Green' },
             'red': { color: '#ef4444', name: 'Crimson Red' },
             'orange': { color: '#f97316', name: 'Sunset Orange' },
             'pink': { color: '#ec4899', name: 'Cherry Pink' },
             'teal': { color: '#14b8a6', name: 'Teal' },
-            'indigo': { color: '#6366f1', name: 'Indigo' }
+            'indigo': { color: '#fb923c', name: 'Light Orange' }
         };
     }
 
