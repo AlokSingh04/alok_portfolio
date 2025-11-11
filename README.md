@@ -20,7 +20,7 @@ Includes Formspree-powered contact form, downloadable resume, and a custom “Ne
 - “Nexus Card” mini profile and downloadable resume (`Alok's CV.pdf`)
 - Mobile-friendly layout built from scratch (no frameworks)
 
-![Hero Preview](./assets/ele/preview.png)
+![Hero Preview](./assets/ele/image.png)
 
 ---
 
