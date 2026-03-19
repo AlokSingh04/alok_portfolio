@@ -1,14 +1,14 @@
 {
     "profile": {
         "name": "Alok",
-        "tagline": "Full Stack Developer & Data Science Enthusiast",
+        "tagline": "Agentic AI Developer & Data Science Enthusiast",
         "location": "India",
-        "bannerImage": "../ele/card_banner.png",
-        "profileImage": "../ele/alok_profile.jpg",
+        "bannerImage": "/assets/ele/card_banner.png",
+        "profileImage": "/assets/ele/alok_profile.jpg",
         "themeColor": "#f97316"
     },
     "skills": [
-        "Full Stack Developer",
+        "Agentic AI Developer",
         "Data Science",
         "Team Leader",
         "Freelancer"

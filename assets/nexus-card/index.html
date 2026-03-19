@@ -546,7 +546,7 @@
                         tagline: "Developer",
                         location: "World",
                         bio: "This is a demo profile",
-                        profileImage: "../ele/profile_pic.png",
+                        profileImage: "/assets/ele/alok_profile.jpg",
                         themeColor: "#f97316"
                     },
                     skills: ["Developer"],
@@ -794,11 +794,13 @@
 
             // Add error handling for images
             document.getElementById('profileImage').onerror = function () {
+                if (!this.dataset.fallbackTried) {
+                    this.dataset.fallbackTried = 'true';
+                    this.src = '/assets/ele/profile_pic.png';
+                    return;
+                }
+
                 this.style.background = 'linear-gradient(45deg, #444, #666)';
-                this.style.display = 'flex';
-                this.style.alignItems = 'center';
-                this.style.justifyContent = 'center';
-                this.innerHTML = '<i class="fas fa-user text-white text-2xl"></i>';
             };
         });
 
