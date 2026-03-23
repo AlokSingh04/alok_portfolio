@@ -17,7 +17,7 @@
       "id": 2,
       "title": "Neural-Network-from-scratch",
       "description": "Implementation of neural networks from scratch with mathematical foundations and practical examples without relying on ML frameworks.",
-      "technologies": ["Python", "Machine Learning", "Deep Learning", "Mathematics"],
+      "technologies": ["Python", "Machine Learning", "Mathematics", "NLP"],
       "category": "web",
       "image": "./assets/projects/scriptable.png",
       "githubUrl": "https://github.com/AlokSingh04/Neural-Network-from-scratch",
