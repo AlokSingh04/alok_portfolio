@@ -1,5 +1,3 @@
-![Alok Singh Portfolio Banner](./assets/ele/repo_banner.png)
-
 # Alok Singh – Portfolio Website
 
 Personal portfolio for Alok Singh (Full Stack Developer & Data Science enthusiast).  
